@@ -1,3 +1,3 @@
 # .gitignore
 
-api_ninja_key = "7SMkHVuSgUEbTHYPTxbzjQ==yYJ53HQULD0ztcma"
+api_ninja_key = Your_API_key
