@@ -1,7 +1,9 @@
 import requests
 import config
-from bs4 import BeautifulSoup
 
+# get your api key here
+# https://api-ninjas.com/profile
+YOUR_API_KEY = 'Your_API_KEY HERE'
 sample = ["https://www.autotrader.com/cars-for-sale/experian?SID=ATCpqbwsrhtSksggQO&VIN=4T3ZA3BB4BU039547&brand=atc&ps=true&make=Toyota",
           "https://www.autotrader.com/cars-for-sale/experian?SID=ATCpqbwsrhtSksggQO&VIN=JTEZU14R668055827&brand=atc&ps=true&make=Toyota",
           "https://www.autotrader.com/cars-for-sale/experian?SID=ATCpqbwsrhtSksggQO&VIN=4JGDA7DB3CA057743&brand=atc&ps=true&make=Mercedes-Benz",
@@ -13,7 +15,7 @@ testLink = 'https://www.autotrader.com/cars-for-sale/experian?SID=ATCpqbwsrhtSks
 def get_car_information(VIN):
     # this method takes in a VIN number and returns the car's make
     api_url = 'https://api.api-ninjas.com/v1/vinlookup?vin={}'.format(VIN)
-    response = requests.get(api_url, headers={'X-Api-Key': f'{config.api_ninja_key}'})
+    response = requests.get(api_url, headers={'X-Api-Key': f'{YOUR_API_KEY}'})
     if response.status_code == requests.codes.ok:
         # convert api response to dictionary for easier parsing
         return response.json()
@@ -37,15 +39,15 @@ def replace_VIN_and_make(autotrader_link, VIN, Make):
 
     return newLink
 
-replace_VIN_and_make(testLink,'JN1AZ4EH3DM383000','Nissan')
 def getAutocheckLink(VIN):
     make = parse_car_information(VIN)
-    print(replace_VIN_and_make(testLink,VIN,make))
-
+    #print(replace_VIN_and_make(testLink,VIN,make))
+    return replace_VIN_and_make(testLink,VIN,make)
 def main():
 
-    '''while vin.lower() != 'exit':
+    vin = ''
+    while vin.lower() != 'exit':
         vin = str(input('Please enter the vin: '))
-        make = str(input(('Please enter the make of the vehicle')))
+        print(getAutocheckLink(vin))
 
-        print()'''
+main()
