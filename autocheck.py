@@ -1,5 +1,6 @@
 import requests
 import config
+from bs4 import BeautifulSoup
 
 sample = ["https://www.autotrader.com/cars-for-sale/experian?SID=ATCpqbwsrhtSksggQO&VIN=4T3ZA3BB4BU039547&brand=atc&ps=true&make=Toyota",
           "https://www.autotrader.com/cars-for-sale/experian?SID=ATCpqbwsrhtSksggQO&VIN=JTEZU14R668055827&brand=atc&ps=true&make=Toyota",
@@ -8,7 +9,6 @@ sample = ["https://www.autotrader.com/cars-for-sale/experian?SID=ATCpqbwsrhtSksg
 
 testLink = 'https://www.autotrader.com/cars-for-sale/experian?SID=ATCpqbwsrhtSksggQO&VIN=5YJYGDEE4MF066732&brand=atc&ps=true&make=Tesla'
 
-vin = ''
 
 def get_car_information(VIN):
     # this method takes in a VIN number and returns the car's make
@@ -22,7 +22,6 @@ def get_car_information(VIN):
 
 def parse_car_information(VIN):
     car = get_car_information(VIN)
-
     return car['manufacturer']
 
 def replace_VIN_and_make(autotrader_link, VIN, Make):
@@ -39,11 +38,14 @@ def replace_VIN_and_make(autotrader_link, VIN, Make):
     return newLink
 
 replace_VIN_and_make(testLink,'JN1AZ4EH3DM383000','Nissan')
+def getAutocheckLink(VIN):
+    make = parse_car_information(VIN)
+    print(replace_VIN_and_make(testLink,VIN,make))
 
 def main():
 
-    while vin.lower() != 'exit':
+    '''while vin.lower() != 'exit':
         vin = str(input('Please enter the vin: '))
         make = str(input(('Please enter the make of the vehicle')))
 
-        print()
+        print()'''
