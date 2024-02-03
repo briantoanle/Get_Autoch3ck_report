@@ -1,5 +1,4 @@
-VIN Autocheck Python
-Overview
+
 This Python script provides a convenient way to retrieve Autocheck reports for vehicles by utilizing their Vehicle Identification Number (VIN). 
 Simply pass in the VIN number as an argument and set your API key in the designated variable, and the program will generate a link to the Autocheck report.
 
